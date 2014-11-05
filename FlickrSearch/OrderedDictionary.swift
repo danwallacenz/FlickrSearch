@@ -107,7 +107,7 @@ struct OrderedDictionary<KeyType:Hashable, ValueType> {
         }
         
         set { // does this work? TEST
-            precondition(index < self.array.count, "Index out-of-bounds")
+//            precondition(index < self.array.count, "Index out-of-bounds")
             
             let (key, value) = newValue
             if let index = find(self.array, key) {
@@ -116,7 +116,7 @@ struct OrderedDictionary<KeyType:Hashable, ValueType> {
                 self.array.append(key)
             }
 
-             self.dictionary[key] = newValue
+             self.dictionary[key] = value
         }
     }
     

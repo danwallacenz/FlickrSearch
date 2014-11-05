@@ -27,6 +27,10 @@ class MasterViewController: UIViewController {
   @IBOutlet var tableView: UITableView!
   @IBOutlet var searchBar: UISearchBar!
   
+    
+    // Maps String, the search term, to an array of Flickr.Photo, or the photos returned from the Flickr API.
+  var searches = OrderedDictionary<String, [Flickr.Photo]>()
+
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "showDetail" {
     }
@@ -47,11 +51,15 @@ extension MasterViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 0
+    return self.searches.count
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+    
+    let (term, photos) = self.searches[indexPath.row]
+    cell.textLabel.text = "\(term) (\(photos.count))"
+    
     return cell
   }
   
@@ -67,6 +75,47 @@ extension MasterViewController: UITableViewDataSource, UITableViewDelegate {
 extension MasterViewController: UISearchBarDelegate {
   
   func searchBarSearchButtonClicked(searchBar: UISearchBar!) {
+
+    searchBar.resignFirstResponder()
+    
+    let searchTerm = searchBar.text
+    
+    // The search method of Flickr takes both a search term and a closure to execute on success or failure of the search.
+    // The closure takes one parameter: an enumeration of either Error or Results.
+    Flickr.search(searchTerm){
+        
+        switch ($0) {
+            
+            // Could make it show an alert here if you wanted, but let’s keep this simple for now. The code requires a break here to tell Swift’s compiler of your intention that the error case do nothing.
+            case .Error:
+                break
+                
+            // If the search works, search returns the results as the associated value in the SearchResults enum type. You add the results to the top of the ordered dictionary, with the search term as the key. If the search term already exists in the dictionary, this will bring the search term to the top of the list and update it with the latest results.
+            case .Results(let results):
+                self.searches.insert(results,
+                        forKey: searchTerm,
+                        atIndex: 0)
+            
+            self.tableView.reloadData()
+        }
+    }
+    
   }
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
