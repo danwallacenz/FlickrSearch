@@ -15,6 +15,7 @@
 		C9666DA5195717D3004CD98B /* FlickrSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9666DA4195717D3004CD98B /* FlickrSearchTests.swift */; };
 		C9666DAF1957185D004CD98B /* Flickr.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9666DAE1957185D004CD98B /* Flickr.swift */; };
 		C9BBAB9319B25CC10040D82F /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9BBAB9219B25CC10040D82F /* JSON.swift */; };
+		CBB32A1B1A0AB95E002F6E44 /* OrderedDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB32A1A1A0AB95E002F6E44 /* OrderedDictionary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		C9666DA4195717D3004CD98B /* FlickrSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrSearchTests.swift; sourceTree = "<group>"; };
 		C9666DAE1957185D004CD98B /* Flickr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flickr.swift; sourceTree = "<group>"; };
 		C9BBAB9219B25CC10040D82F /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
+		CBA99B761A0AC81300A6A01A /* ODPlayground .playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "ODPlayground .playground"; sourceTree = "<group>"; };
+		CBB32A1A1A0AB95E002F6E44 /* OrderedDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedDictionary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				C9666D95195717D3004CD98B /* Main.storyboard */,
 				C9666D98195717D3004CD98B /* Images.xcassets */,
 				C9666D8D195717D3004CD98B /* Supporting Files */,
+				CBB32A1A1A0AB95E002F6E44 /* OrderedDictionary.swift */,
+				CBA99B761A0AC81300A6A01A /* ODPlayground .playground */,
 			);
 			path = FlickrSearch;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 				C9666D94195717D3004CD98B /* DetailViewController.swift in Sources */,
 				C9BBAB9319B25CC10040D82F /* JSON.swift in Sources */,
 				C9666D92195717D3004CD98B /* MasterViewController.swift in Sources */,
+				CBB32A1B1A0AB95E002F6E44 /* OrderedDictionary.swift in Sources */,
 				C9666DAF1957185D004CD98B /* Flickr.swift in Sources */,
 				C9666D90195717D3004CD98B /* AppDelegate.swift in Sources */,
 			);
