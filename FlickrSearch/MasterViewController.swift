@@ -36,6 +36,7 @@ class MasterViewController: UIViewController {
         
         if let indexPath = self.tableView.indexPathForSelectedRow()
         {
+            // Indicate with the underscore that this part of the tuple doesn’t need to be bound to a local variable.
             let (_, photos) = self.searches[indexPath.row]
             
             (segue.destinationViewController
@@ -49,8 +50,19 @@ class MasterViewController: UIViewController {
     if let selectedIndexPath = self.tableView.indexPathForSelectedRow() {
       self.tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
     }
+    
+    // Deleting searches
+    self.navigationItem.leftBarButtonItem = self.editButtonItem()
   }
+    
+    override func setEditing(editing: Bool, animated: Bool){
+        super.setEditing(editing, animated: animated)
+        self.tableView.setEditing(editing, animated: animated)
+    }
 }
+
+
+
 
 extension MasterViewController: UITableViewDataSource, UITableViewDelegate {
   
@@ -76,6 +88,12 @@ extension MasterViewController: UITableViewDataSource, UITableViewDelegate {
   }
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    
+    if editingStyle == .Delete {
+        self.searches.removeAtIndex(indexPath.row)
+        tableView.deleteRowsAtIndexPaths(
+            [indexPath], withRowAnimation: .Fade)
+    }
   }
   
 }
