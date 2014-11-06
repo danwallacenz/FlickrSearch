@@ -122,12 +122,28 @@ struct OrderedDictionary<KeyType:Hashable, ValueType> {
             self.dictionary[key] = value
         }
     }
-    
 }
 
+extension OrderedDictionary: SequenceType {
+    
+    //  The GeneratorType type alias that the SequenceType protocol defined must be a type that conforms to Generator. You could write your own generator, but the Swift standard library includes a helpful struct called GeneratorOf that takes a closure to execute each time next() is called. The struct is generic on the type of object that is returned. Therefore, in the case of OrderedDictionary, you set the generic type parameter to a tuple of KeyType and ValueType.
+//    typealias GeneratorType = GeneratorOf<(KeyType, ValueType)>
+    
+    func generate() -> GeneratorOf<(KeyType, ValueType)> {
+        var index = 0
+        
+        return GeneratorOf {
+            if index < self.array.count {
+                let key = self.array[index++]
+                return (key, self.dictionary[key]!)
+            } else {
+                return nil
+            }
+        }
+    }
+}
 
-
-
+// playground stuff
 var dict = OrderedDictionary<Int, String>()
 
 dict.insert("dog", forKey: 1, atIndex: 0)
@@ -148,8 +164,10 @@ dict[4] = (7,"lion")
 
 println(dict.array.description + " : " + dict.dictionary.description)
 
-
-
+//By implementing SequenceType, it's possible to use OrderedDictionary in the for-in enumeration technique.
+for (key, value) in dict {
+    println("\(key) => \(value)")
+}
 
 
 
